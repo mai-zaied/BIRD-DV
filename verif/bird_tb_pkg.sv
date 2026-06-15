@@ -73,10 +73,10 @@ package bird_tb_pkg;
                 end
             end
 
-            @(vif.cb_drv);
             vif.cb_drv.in_vld  <= 1'b0;
             vif.cb_drv.data_in <= '0;
             vif.cb_drv.cfg     <= '0;
+            @(vif.cb_drv);
         endtask
     endclass
 
@@ -127,5 +127,8 @@ package bird_tb_pkg;
         endtask
     endclass
 
+    `include "bird_drop_checker.sv"
+    `include "bird_local_monitor.sv"
+    `include "bird_local_checker.sv"
 endpackage
 
