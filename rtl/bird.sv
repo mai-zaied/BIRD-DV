@@ -8,7 +8,7 @@
 // ============================================================
 // Course project: Birzeit Integrated Router Design (BIRD)
 // BIRD Behavioral SystemVerilog Model (NON-synthesizable)
-// Design is build as behavioral model just for DV purposes 
+// Design is build as behavioral model just for DV purposes
 // ============================================================
 
 module bird (
@@ -108,7 +108,7 @@ module bird (
       end
       wq.push_back(w);
     end
-   endfunction
+  endfunction
 
   // ----------------------------
   // Input ready (behavioral model is always ready)
@@ -148,303 +148,220 @@ module bird (
 
   // ============================================================
   // Remote accumulation state (one packet at a time)
-  // ============================================================
+  // ===========================================================
   bit          remote_active;
-  int unsigned active_seq;                 // 1..31 (packet identifier)
-  int unsigned active_max_frag;            // inferred N: max FRAG_NUM seen so far (1..31)
+  int unsigned active_seq;
+ 
   bit          frag_seen   [1:31];
-  u8_t         frag_payload[1:31][$];
+  u8_t         frag_pay
 
   task automatic clear_remote_state();
-    remote_active    = 0;
+    remote_active  
     active_seq       = 0;
     active_max_frag  = 0;
-    for (int f = 1; f <= 31; f++) begin
-      frag_seen[f] = 0;
-      frag_payload[f].delete();
+    for (in
+
+      frag_pa
     end
   endtask
 
-  task automatic drop_remote_packet_counted();
-    // Drop currently-accumulated remote packet (if any) and count it as one dropped packet.
+  task 
     if (remote_active) begin
-      inc_drop_cnt();
+
     end
-    clear_remote_state();
+    clear_re
   endtask
 
-  function automatic bit all_frags_ready(input int unsigned n);
+  function automat
     bit ok;
     ok = 1;
-    for (int f = 1; f <= 31; f++) begin
+    f
       if (f <= n) begin
-        if (!frag_seen[f]) ok = 0;
+      
       end
     end
-    return ok;
-  endfunction
+    retu
 
-  task automatic build_and_queue_remote_output();
+
+  task automatic 
     u8_t merged[$];
-    logic [15:0] crc;
+    logic [
 
     merged.delete();
 
-    // Merge in order 1..N; if missing any => drop packet
-    for (int f = 1; f <= active_max_frag; f++) begin
+    f
       if (!frag_seen[f]) begin
-        drop_remote_packet_counted();
+ 
         return;
       end
-      foreach (frag_payload[f][i]) merged.push_back(frag_payload[f][i]);
+      
     end
 
-    // Regenerate CRC over merged payload (cfg is not part of stream)
-    crc = crc16_ccitt_bytes(merged);
+    crc = crc16_ccitt_by
 
-    // Queue merged payload packed into 32-bit words, then CRC word
-    pack_bytes_to_words(merged, remote_wq);
-    remote_wq.push_back({16'h0000, crc});
+    pack_bytes_to_words(merg
+    remote_wq.push_back({16'h0000
 
-    // Clear current remote packet state after queuing output (NOT a drop)
     clear_remote_state();
-  endtask
+  endt
 
-    // ============================================================
-    // RX fragment FSM
-    // ============================================================
-    typedef enum logic [1:0] {RX_IDLE, RX_PAYLOAD, RX_CRC} rx_state_e;
-    rx_state_e rx_st;
-
-    // Latched at start-of-fragment (first payload byte)
-    bit          rx_is_remote;
-    bit          rx_drop;
-
-    int unsigned rx_seq;       /
-    int unsigned rx_len;    
-    int unsigned rx_frag;      
-
-    // Counters for the remainder of t
-    int unsigned payload_left;  // remaining payl
-    int unsigned crc_left;      // rem
-
-    // T
-    u8_t cur_frag_payload[$];
-
-    // ============================================================
-    // Main sequential behavior
-    // ============================================================
-    always_ff @(posedge clk or negedge rst_n) begin
-        if (!rst_n) begin
-            $display("ssssssssssssssssss state moved to idle");
-            rx_st <= RX_IDLE;
-
-            local_q.delete();
-            remote_wq.delete();
-            cur_frag_payload.delete();
-
-            drop_cnt <= 16'd0;
-
-            clear_remote_state();
-
-        end else begin
-        if (in_vld && in_rdy) begin
-            unique case (rx_st)
-
-                // ----------------------------------------------------
-                // RX_IDLE: first payload byte of a fragment arrives here
-                // cfg sampled in SAME cycle as first payload byte.
-      
-                RX_IDLE: b
-                    rx_drop 
-
-                    rx_len       = cf
-                    rx_frag      = cfg[20:16];
+  // ===========================
   
 
-                    
-                    cur_f
+  typedef enum logic [1:0] {RX_ID
+  rx_state
 
-                    // Co
+  bit          rx_is_remote;
+  b
+  int unsigned rx_seq;
+  int 
 
-                    crc_le
+  int unsigned payload_left;
+  int unsigned crc_left;
 
-                    // If 
-                  
-                        inc_drop_cnt();
- 
+  u8_t cur
 
-                        // If this is a remote fragment for t
-                        if (cfg[0] == 1
-                            drop_re
-         
+  // ===========================================================
+  // Main sequential behavior
+  // ==============================
+  always_ff @(posedge clk or neg
+    if (!rst_n) begin
+      rx_st
 
-                        // Valid cfg: handle 
-                        if (!rx_is_remote) begin
-                   
-                            $display("pus
-                            local_q.p
-         
-       
+      lo
+
+      cur_frag_payload.delete();
+
+      drop_cnt <= 16'd0;
+
+      clea
+
+    end else begin
+      if (in_
+        unique case (rx_st)
+
+          RX_IDLE: begin
      
+            
+            
 
-                                // if (rx_frag == 1) begi
-       
-                                    remote_active   =
-                                    active_seq      = rx_seq;
+            rx_seq       = cfg
+
+            cur_frag_payload.dele
+
+            payload_left = (cfg[1
+            crc_left     = 2;
+
    
-                             
-                                        frag_seen[f] = 0;
-             
-                                    end
-                                    $display("====
-                                  
-                                end e
 
-                                    in
-                         
-                         
-                         
-                                $displa
-                       
-                               
-       
-         
+              if (cfg[0] == 1'b1 && remote_ac
+                drop_remote_packe
 
-                                    // Start n
-                                    //if (rx_frag == 1) begin
-                              
-                            
-                     
-       
-                         
-         
+            end else begin
 
-                                        end
-                   
-           
-           
-                                       
-                       
-                                  
-         
-       
-              
-             
-
-                            end
-                 
-                   
-
-                    
-
-                    
-
-                    end else begin
-                      
-                        rx_st <= RX_PAYLOAD;
-       
-                
-             
-
-                // -----------------
-               
-         
-                RX_PAYLOAD: begin
-                    rx_drop      = cfg
-       
-
-                    $display("Dropppppppppppppppppppppppppppp");
-    
-                    if (!rx_drop) be
-
-                            // Local: forward payload bytes
-       
-                            local_q.push_ba
-                        end else begin
-  
-
-                                $display("%t ====================3 Adding 
-                         
-         
-
-                    end
-
-                    if (payload_left > 0) 
-
-                    /
-                    if (payload_left == 3) begin
+                local_q.push_back(data_in);
+      
+                if (!remote_active) 
+                  if (rx_seq <= rx_f
                   
-                        rx_st <= RX_CRC;
+                    active_seq      = rx_seq;
+        
+                    for (int f = 1; 
+                      frag_seen[f] =
+       
+
+               
+             
+
+                  end
+           
+                  if (rx_seq > rx_frag) begin
+             
+                    if (rx_seq ==
+                      remote_active   = 1;
+                      active_s
+                     
+                   
+                        frag
+                        frag_pa
+                      end
+             
+                    end else begin
+              
                     end
-     
+              
+         
+       
+               
+             
+
+
+            if (((cfg[15:8] > 0)
+              rx_st <= RX_CRC;
+            end else begin
+   
+            end
+          end
+
+  
+            rx_drop = cfg_invalid(cfg);
+            if ((!rx_is_remote && remote_active) || (
+          
+          
+            if (!rx_drop) begin
+  
+                local
+              en
+                if (remote_active && (r
+                  cur_frag_payload.
                 end
+             
+            en
 
-
-
-                // Local: forward CRC bytes unchanged on
-                // -----------
-                RX_CRC: b
-
-                    if (crc_left
-
-                    // Forw
-                    if (!rx_dro
-
-                        local_q.push_b
-                    end
-
-                    // E
-                    if (crc_left == 1)
+          
 
         
-                            /
+              rx_st <=
+       
+          end
 
-                                // Remote fragment without valid ac
-                               
-                                inc_drop_cnt();
-                   
-                                // rx_frag is guara
-                         
-                                if (rx_seq < 1 || rx_seq > rx_f
-                             
+          RX_CRC: begin
+         
 
-                             
-                               
-                                    //
-
-                              
-
-                                 
-
-                      
-                                   
-                               
-
-                                    // Infer N as max FRAG_NUM seen so 
-                                    $display("check if frag done");
-     
-                                    if (rx_seq > active_max_frag) a
-
-     
-                          
-                            
-
-                                end
+            if (!rx_drop && !rx_is_remote) begin
  
-                        end
+            end
 
-                 
+            if (
+              if (!
+                if
+     
+
+                  if (rx_seq < 1 
+                    drop_remote_packet_counted();
+                
+                    frag_seen[rx_
+                    frag_p
+                    foreach 
+
+                    end
+             
+                    if (rx_seq > active_max_frag)
+                    i
+                      bui
+                    end
   
 
-                    
-                end
+              end
+        
+            end
+          e
 
-    
+          default
 
-            endcase
-     
-
+        endcase
+      end
     end
+  end
 
 endmodule
