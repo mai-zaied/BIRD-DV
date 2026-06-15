@@ -1,0 +1,11 @@
+csrc/
+simv_m2
+simv_m2.daidir/
+*.daidir/
+ucli.key
+run.log
+*.log
+*.vcd
+*.fsdb
+DVEfiles/
+.vcs*
