@@ -19,7 +19,7 @@ package bird_tb_pkg;
         endfunction
 
         function int total_len_bytes();
-            return payload_len() + 2;
+            return payload_len();
         endfunction
     endclass
 
