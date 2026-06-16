@@ -5,4 +5,4 @@
 ./rtl/bird.sv
 ./verif/bird_if.sv
 ./verif/bird_tb_pkg.sv
-./verif/bird_m3_remote_tb.sv
+./verif/bird_m3_remote_missing_tb.sv
