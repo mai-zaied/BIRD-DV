@@ -55,9 +55,9 @@ module bird_m2_local_tb;
         drv.apply_reset(3);
         drop_chk.clear();
 
-        p1 = '{8'h11, 8'h22, 8'h33}; t1 = make_local(1, 1, 3, p1, 8'hAB, 8'hCD);
-        p2 = '{8'hDE, 8'hAD};        t2 = make_local(5, 1, 2, p2, 8'h12, 8'h34);
-        p3 = '{8'h99};               t3 = make_local(0, 1, 1, p3, 8'h56, 8'h78);
+        p1 = '{8'h11, 8'h22};       t1 = make_local(1, 1, 4, p1, 8'hAB, 8'hCD);
+        p2 = '{8'hDE, 8'hAD, 8'hBE}; t2 = make_local(5, 1, 5, p2, 8'h12, 8'h34);
+        p3 = '{8'h99, 8'h88, 8'h77, 8'h66}; t3 = make_local(0, 1, 6, p3, 8'h56, 8'h78);
 
         drv.drive_fragment(t1); repeat (15) @(bif.cb_drv);
         drv.drive_fragment(t2); repeat (15) @(bif.cb_drv);
