@@ -1,7 +1,7 @@
 class bird_remote_seq;
 
-    // index_mode = 0 -> DUT mode 
-    // index_mode = 1 -> SPEC mode 
+    // index_mode = 0 | DUT mode 
+    // index_mode = 1 | SPEC mode 
     int index_mode;
 
     function new(int index_mode = 0);
@@ -26,12 +26,12 @@ class bird_remote_seq;
         total_len = payload.size() + 2;
 
         if (index_mode == 0) begin
-            // DUT mode: position goes on SEQ_NUM, FRAG_NUM is fixed
+            //. position goes on SEQ_NUM, FRAG_NUM is fixed
             seq_val  = idx;
             frag_val = pkt_id;
         end
         else begin
-            // SPEC mode: position goes on FRAG_NUM, SEQ_NUM is shared
+            // position goes on FRAG_NUM, SEQ_NUM is shared
             seq_val  = pkt_id;
             frag_val = idx;
         end

@@ -34,7 +34,7 @@ module bird_m3_remote_tb;
         rword_mb = new();
         drv  = new(bif.tb_drv_mp);
         rmon = new(bif.tb_mon_mp, rword_mb);
-        gen  = new(0);            // 0 = DUT mode (index on SEQ_NUM)
+        gen  = new(0);            // 0 = DUT mode 
 
         fork rmon.run(); join_none
 
@@ -50,10 +50,8 @@ module bird_m3_remote_tb;
         drv.drive_fragment(f1);
         drv.drive_fragment(f2);
 
-        // give the DUT time to emit the merged packet
         repeat (40) @(bif.cb_drv);
 
-        // print whatever the remote monitor captured
         $display("[M3_TB] ---- remote output words ----");
         while (rword_mb.num() > 0) begin
             rword_mb.get(w);

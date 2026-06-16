@@ -22,7 +22,7 @@ class bird_remote_monitor;
                 have_prev = 1'b0;
             end
             else if (vif.cb_mon.remote_vld && vif.cb_mon.remote_rdy) begin
-                // accepted word; skip only if it's an immediate exact repeat
+                //skip only if it's an immediate exact repeat
                 if (!(have_prev && (vif.cb_mon.data_remote == prev_word))) begin
                     word_mb.put(vif.cb_mon.data_remote);
                 end
@@ -30,7 +30,7 @@ class bird_remote_monitor;
                 have_prev = 1'b1;
             end
             else begin
-                have_prev = 1'b0;   // gap -> next identical word is a real new one
+                have_prev = 1'b0; 
             end
         end
     endtask
