@@ -1,8 +1,4 @@
 `timescale 1ns/1ps
-`include "bird_drop_checker.sv"
- `include "bird_local_monitor.sv"
- `include "bird_local_checker.sv"
- `include "bird_remote_monitor.sv"
 
 package bird_tb_pkg;
 
@@ -134,5 +130,6 @@ package bird_tb_pkg;
     `include "bird_drop_checker.sv"
     `include "bird_local_monitor.sv"
     `include "bird_local_checker.sv"
+    `include "bird_remote_monitor.sv"
 endpackage
 
