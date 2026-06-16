@@ -9,7 +9,7 @@
 // Course project: Birzeit Integrated Router Design (BIRD)
 // BIRD Behavioral SystemVerilog Model (NON-synthesizable)
 // ============================================================
-
+`timescale
 module bird (
   input  logic        clk,
   input  logic        rst_n,
