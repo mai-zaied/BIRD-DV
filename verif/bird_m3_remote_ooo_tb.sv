@@ -1,5 +1,5 @@
 `timescale 1ns/1ps
-module bird_m3_remote_missing_tb;
+module bird_m3_remote_ooo_tb;
     import bird_tb_pkg::*;
 
     logic clk;
@@ -24,52 +24,48 @@ module bird_m3_remote_missing_tb;
 
     initial begin
         $fsdbDumpfile("waves.fsdb");
-        $fsdbDumpvars(0, bird_m3_remote_missing_tb);
+        $fsdbDumpvars(0, bird_m3_remote_ooo_tb);
     end
 
     initial begin
-        bird_fragment f1, f3;
-        byte unsigned p1[]; byte unsigned p3[];
+        bird_fragment f1, f2;
+        byte unsigned p1[]; byte unsigned p2[];
         bit [31:0] w;
-        int got;
 
         rword_mb = new();
+        cov  = new();
         drv  = new(bif.tb_drv_mp);
         rmon = new(bif.tb_mon_mp, rword_mb);
         gen  = new(0);            // DUT mode
-        cov  = new();
 
         fork rmon.run(); join_none
 
         drv.apply_reset(3);
 
-        // packet that should have 3 fragments, but we send only index 1 and 3
-        // (index 2 is MISSING -> packet must NOT complete)
-        p1 = '{8'h11, 8'h22, 8'h33};
-        p3 = '{8'h77, 8'h88, 8'h99};
+        // same packet, but sent OUT OF ORDER: fragment idx 2 first, then idx 1
+        p1 = '{8'h11, 8'h22, 8'h33};   // belongs to position 1
+        p2 = '{8'h44, 8'h55, 8'h66};   // belongs to position 2
 
-        f1 = gen.make_fragment(p1, 1, 3, 8'hA0, 8'hA1);   // index 1, pkt_id 3
-        f3 = gen.make_fragment(p3, 3, 3, 8'hC0, 8'hC1);   // index 3, pkt_id 3
+        f2 = gen.make_fragment(p2, 2, 2, 8'hB0, 8'hB1);   // position 2
+        f1 = gen.make_fragment(p1, 1, 2, 8'hA0, 8'hA1);   // position 1
+        cov.sample_fragment(f2);
 
-        drv.drive_fragment(f1);
         cov.sample_fragment(f1);
-        drv.drive_fragment(f3);
-        cov.sample_fragment(f3);
-        cov.sample_packet(3, 0, 0, bird_remote_coverage::DROP_MISSING);
+        drv.drive_fragment(f2);    // send position 2 FIRST
+        cov.sample_packet(2, 1, 0, bird_remote_coverage::DROP_NONE);
+        drv.drive_fragment(f1);    // then position 1
 
-        repeat (60) @(bif.cb_drv);
+        repeat (40) @(bif.cb_drv);
 
-        got = rword_mb.num();
-        $display("[M3_MISS] ---- remote output words ----");
+        $display("[M3_OOO] ---- remote output words ----");
         while (rword_mb.num() > 0) begin
             rword_mb.get(w);
-            $display("[M3_MISS] remote word = 0x%08h", w);
+            $display("[M3_OOO] remote word = 0x%08h", w);
         end
-        $display("[M3_MISS] total remote words = %0d (expected 0 if dropped/incomplete)", got);
-        $display("[M3_MISS] DUT drop_cnt = %0d", bif.drop_cnt);
+        $display("[M3_OOO] DUT drop_cnt = %0d", bif.drop_cnt);
 
         repeat (10) @(bif.cb_drv);
-        cov.report("bird_m3_remote_missing_tb");
+        cov.report("bird_m3_remote_ooo_tb");
         $finish;
     end
 endmodule

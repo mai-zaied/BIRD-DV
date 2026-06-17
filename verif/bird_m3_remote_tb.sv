@@ -18,6 +18,7 @@ module bird_m3_remote_tb;
     bird_input_driver   drv;
     bird_remote_monitor rmon;
     bird_remote_seq     gen;
+    bird_remote_coverage cov;
 
     mailbox #(bit [31:0]) rword_mb;
 
@@ -32,6 +33,7 @@ module bird_m3_remote_tb;
         bit [31:0] w;
 
         rword_mb = new();
+        cov  = new();
         drv  = new(bif.tb_drv_mp);
         rmon = new(bif.tb_mon_mp, rword_mb);
         gen  = new(0);            // 0 = DUT mode 
@@ -46,8 +48,11 @@ module bird_m3_remote_tb;
 
         f1 = gen.make_fragment(p1, 1, 2, 8'hA0, 8'hA1);
         f2 = gen.make_fragment(p2, 2, 2, 8'hB0, 8'hB1);
+        cov.sample_fragment(f1);
 
+        cov.sample_fragment(f2);
         drv.drive_fragment(f1);
+        cov.sample_packet(2, 0, 0, bird_remote_coverage::DROP_NONE);
         drv.drive_fragment(f2);
 
         repeat (40) @(bif.cb_drv);
@@ -60,6 +65,7 @@ module bird_m3_remote_tb;
         $display("[M3_TB] DUT drop_cnt = %0d", bif.drop_cnt);
 
         repeat (10) @(bif.cb_drv);
+        cov.report("bird_m3_remote_tb");
         $finish;
     end
 endmodule
