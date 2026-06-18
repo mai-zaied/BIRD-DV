@@ -133,5 +133,8 @@ package bird_tb_pkg;
     `include "bird_remote_monitor.sv"
     `include "bird_remote_seq.sv"
     `include "bird_remote_coverage.sv"
+    `include "bird_m4_coverage.sv"
+    `include "bird_ref_model.sv"
+    `include "bird_env.sv"  
 endpackage
 
