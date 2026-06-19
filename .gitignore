@@ -29,6 +29,5 @@ DVEfiles/
 cov_*.vdb/
 *.vdb
 urgReport/
-bird_cov_report/
 *_cov_report/
 .cm.log

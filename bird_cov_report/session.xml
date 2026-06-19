@@ -1,0 +1,40 @@
+<session version="1.1" release="T-2022.06-SP2" timestp="2026-06-19 00:20:31 GMT">
+  <info>
+    <attr name="datetime" value="Fri Jun 19 03:20:32 2026
+"/>
+    <attr name="command" value="urg -dir cov_reg.vdb -report bird_cov_report"/>
+    <attr name="top_instance" value="bird_regression_tb"/>
+  </info>
+  <hvp>
+    <datadef>
+      <metdef name="Line" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="Cond" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="Toggle" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="FSM" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="Branch" type="ratio" aggregator="average" builtin="1" />
+      <metdef name="Group" type="percent" aggregator="average" builtin="1" />
+    </datadef>
+  </hvp>
+  <old_coverage>
+  <scope type="top" name="top">
+    <metric name="Line" value="249/274" />
+    <metric name="Cond" value="24/41" />
+    <metric name="Toggle" value="219/428" />
+    <metric name="FSM" value="3/5" />
+    <metric name="Branch" value="33/44" />
+    <metric name="Group" value="87.5%" />
+  </scope>
+  <scope type="instance" name="top">
+  </scope>
+  <scope type="group" name="top">
+    <scope type="group" name="bird_tb_pkg::bird_remote_coverage::remote_cg">
+      <metric name="Group" value="75%" />
+    </scope>
+    <scope type="group" name="bird_tb_pkg::bird_m4_coverage::cg_traffic_outcome">
+      <metric name="Group" value="100%" />
+    </scope>
+  </scope>
+  <scope type="assert" name="Statistics">
+  </scope>
+  </old_coverage>
+</session>
