@@ -1,11 +1,34 @@
-csrc/
-simv_m2
-simv_m2.daidir/
+# VCS build artifacts
+simv
+simv*
+simv.daidir/
 *.daidir/
+csrc/
+vc_hdrs.h
 ucli.key
-run.log
-*.log
-*.vcd
-*.fsdb
-DVEfiles/
 .vcs*
+64/
+AN.DB/
+
+# logs
+*.log
+run.log
+compile*.log
+
+# waveforms / dumps
+*.fsdb
+*.vcd
+*.vpd
+novas.*
+verdiLog/
+verdi_config_file
+DVEfiles/
+
+# coverage
+*.vdb/
+cov_*.vdb/
+*.vdb
+urgReport/
+bird_cov_report/
+*_cov_report/
+.cm.log
