@@ -1,0 +1,6 @@
+[TEST] starting bird_test_23_drop_wrap
+[WRAP] drop_cnt after 65535 drops = 65535
+[WRAP] drop_cnt after 65536 drops = 0  (expect 0: wrapped over 2^16)
+[WRAP] drop_cnt after 65537 drops = 1  (expect 1: counting resumes)
+[SB]   RESULT: PASS                                    
+$finish at simulation time           3277375000
