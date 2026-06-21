@@ -1,8 +1,8 @@
 <Command name="schRTLInfo"  delimiter="."  >
 <RTLBlock >
-<RTLInfo   name="rx_st_0"  type="2"  fileName="./rtl/bird.sv"  >
+<RTLInfo   name="rx_st_0"  type="2"  fileName="./design/bird.sv"  >
     <Seg beginLine="240"  endLine="345"  />
   </RTLInfo>
-<Instance name="bird_regression_tb.dut"  />
+<Instance name="bird_tb.dut"  />
 </RTLBlock>
 </Command>

@@ -1,0 +1,171 @@
+Command: vcs -full64 -sverilog -debug_access+all -timescale=1ns/1ps -f vcs.f -o simv \
+-l compile_now.log
+                         Chronologic VCS (TM)
+       Version T-2022.06-SP2_Full64 -- Sun Jun 21 21:17:15 2026
+
+                    Copyright (c) 1991 - 2022 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+
+Parsing design file './design/bird.sv'
+Parsing design file './verif/if/bird_if.sv'
+Parsing design file './verif/env/bird_pkg.sv'
+Parsing included file './verif/cfg/bird_pkt_cfg.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/env/bird_fragment.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/env/bird_drop_checker.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/env/bird_local_monitor.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/env/bird_local_checker.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/env/bird_remote_monitor.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/env/bird_remote_coverage.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/env/bird_m4_coverage.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/env/bird_generator.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/env/bird_driver.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/env/bird_monitor.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/env/bird_checker.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/env/bird_agent.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/env/bird_env.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_base.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_local_valid.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_local_invalid.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_remote_invalid.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_remote_inorder.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_remote_ooo.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_remote_missing.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_remote_seqmix.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_remote_newfrag1.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_remote_spec_inorder.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_drop_seq0.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_drop_frag0.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_drop_len0.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_backpressure.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_remote_cover.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_rand_valid.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_rand_weighted.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_rand_inline.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_rand_cmode.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_rand_rmode.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_rand_solve.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_rand_cyclic.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_rand_invalid.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/seq/bird_seq_wrap.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_base.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_01_local_valid.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_02_local_invalid.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_03_remote_invalid.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_04_remote_inorder.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_05_remote_ooo.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_06_remote_missing.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_07_remote_seqmix.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_08_remote_newfrag1.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_09_remote_spec_inorder.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_10_drop_seq0.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_11_drop_frag0.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_12_drop_len0.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_13_backpressure.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_14_remote_cover.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_15_rand_valid.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_16_rand_weighted.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_17_rand_inline.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_18_rand_cmode.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_19_rand_rmode.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_20_rand_solve.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_21_rand_cyclic.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_22_rand_invalid.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tests/bird_test_23_drop_wrap.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing included file './verif/tb/bird_test_harness.sv'.
+Back to file './verif/env/bird_pkg.sv'.
+Parsing design file './verif/tb/bird_tb.sv'
+Top Level Modules:
+       bird_tb
+TimeScale is 1 ns / 1 ps
+Starting vcs inline pass...
+
+5 modules and 0 UDP read.
+	However, due to incremental compilation, no re-compilation is necessary.
+rm -f _cuarc*.so _csrc*.so pre_vcsobj_*.so share_vcsobj_*.so
+if [ -x ../simv ]; then chmod a-x ../simv; fi
+g++  -o ../simv      -rdynamic  -Wl,-rpath='$ORIGIN'/simv.daidir -Wl,-rpath=./simv.daidir \
+-Wl,-rpath=/usr/synopsys/vcs/T-2022.06-SP2/linux64/lib -L/usr/synopsys/vcs/T-2022.06-SP2/linux64/lib \
+-Wl,-rpath-link=./  /usr/lib64/libnuma.so.1   objs/amcQw_d.o   _8468_archive_1.so \
+_prev_archive_1.so  SIM_l.o      rmapats_mop.o rmapats.o rmar.o rmar_nd.o  rmar_llvm_0_1.o \
+rmar_llvm_0_0.o            -lvirsim -lerrorinf -lsnpsmalloc -lvfs    -lvcsnew -lsimprofile \
+-luclinative /usr/synopsys/vcs/T-2022.06-SP2/linux64/lib/vcs_tls.o   -Wl,-whole-archive \
+-lvcsucli    -Wl,-no-whole-archive        _vcs_pli_stub_.o   /usr/synopsys/vcs/T-2022.06-SP2/linux64/lib/vcs_save_restore_new.o \
+/usr/synopsys/verdi/T-2022.06-SP2/share/PLI/VCS/LINUX64/pli.a -ldl  -lc -lm -lpthread \
+-ldl 
+../simv up to date
+CPU time: .702 seconds to compile + .395 seconds to elab + .301 seconds to link
